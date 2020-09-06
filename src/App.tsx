@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Button, Container, Typography } from "@material-ui/core";
+import "./App.css";
+import { fetchRandomResult, reduceResult, submitResult } from "./utils/utils";
 
-function App() {
+const App = () => {
+  const [isSuccess, setIsSuccess] = useState<boolean | undefined>(undefined);
+
+  const run = async () => {
+    const results = await fetchRandomResult();
+    console.log("Random Data", results);
+
+    const token = results.data.token;
+
+    const sum: Array<number> = reduceResult(results.data.points);
+    console.log("Calculated result", sum);
+
+    const response = await submitResult(token, sum);
+    setIsSuccess(response.data.success);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Typography className={isSuccess ? "ok" : "fail"}>
+        Result: {isSuccess ? "ok" : "fail"}
+      </Typography>
+      <Button onClick={run} className={"centerButton"}>
+        Run calculation
+      </Button>
+    </Container>
   );
-}
+};
 
 export default App;
