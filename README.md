@@ -5,7 +5,12 @@ Min løsning på denne opgave er bygget på en create-react-app template med typ
 
 Algoritmen til løsningen ligger i ``src/utils/utils.ts``, dette er skrevet i rent typescript, og kan overføres til hvilken som helst frontend.
 
-Tests samt dokumentation og argumentation på disse ligger i `src/tests/App.test.tsx`  
+Tests samt dokumentation og argumentation på disse ligger i `src/tests/App.test.tsx`
+
+Programmet køres ved at clone dette repo.
+Køre npm install og derefter npm start.
+Dette starter applikationen på localhost:3000, og giver en knap der kan klikkes på, for at eksekvere get fra api, udregning og post.
+Output kan evt. ses i consolen.
 
 ## Bowling-point algoritme
 
